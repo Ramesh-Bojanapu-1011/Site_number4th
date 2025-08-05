@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <Headder />
+      {/* <Headder /> */}
       <div>
         <div className={styles.heroSection}>
           <div className={styles.logoContainer}>
