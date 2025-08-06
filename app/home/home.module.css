@@ -219,8 +219,6 @@
   }
 }
 .servicesSection {
-  height: 100vh;
-
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
   display: flex;
   align-items: center;
@@ -228,7 +226,6 @@
   color: #fff;
   padding: 40px 20px;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .servicesContent {

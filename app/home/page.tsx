@@ -30,7 +30,6 @@ const HomePage = () => {
           </div>
         </section>
 
-        {/* About Freelancing */}
         {/* About Freelancing (Updated) */}
         <section className={styles.aboutSection}>
           <div className={styles.aboutContent}>

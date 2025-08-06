@@ -24,7 +24,7 @@ function MobileMenuItem({
   return (
     <div>
       <Link
-        className="w-full text-left px-4 py-2 rounded-full text-blue-800 font-medium hover:bg-blue-50 transition flex justify-between items-center"
+        className="flex items-center justify-between w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full hover:bg-blue-50"
         onClick={toggle}
         href={link}
       >
@@ -72,10 +72,10 @@ const Headder = (props: Props) => {
   return (
     <>
       {/* Navigation */}
-      <nav className="fixed caret-transparent w-full min-w-0 bg-white dark:bg-gray-900 shadow-md z-10">
-        <div className="px-4 py-3 flex justify-between items-center min-w-0">
+      <nav className="sticky top-0 z-50 w-full min-w-0 bg-white shadow-md caret-transparent dark:bg-gray-900">
+        <div className="flex items-center justify-between min-w-0 px-4 py-3">
           <div className="flex items-center">
-            <div className="rounded-lg flex items-center justify-center mr-3">
+            <div className="flex items-center justify-center mr-3 rounded-lg">
               <Link href={"/"}>
                 <Image src={"/logo1.png"} alt={""} width={200} height={200} />
               </Link>
@@ -83,26 +83,26 @@ const Headder = (props: Props) => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center">
+          <div className="items-center hidden md:flex">
             {/* Home with submenu - styled like mobile */}
             <div className="relative group">
               <Link
                 href={"/"}
-                className="w-full text-left px-4 py-2 rounded-full text-blue-800 dark:text-blue-200 font-medium hover:bg-blue-50 dark:hover:bg-gray-800 transition flex justify-between items-center"
+                className="flex items-center justify-between w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
               >
                 Home
                 <span className="ml-2">▼</span>
               </Link>
-              <div className="absolute left-0 mt-2 w-32 bg-white dark:bg-gray-800 shadow-lg rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-20">
+              <div className="absolute left-0 z-20 w-32 mt-2 transition-opacity bg-white rounded-lg shadow-lg opacity-0 dark:bg-gray-800 group-hover:opacity-100">
                 <Link
                   href="/home1"
-                  className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                 >
                   Home1
                 </Link>
                 <Link
                   href="/home2"
-                  className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                 >
                   Home2
                 </Link>
@@ -111,7 +111,7 @@ const Headder = (props: Props) => {
             {/* About */}
             <Link
               href="/about"
-              className="w-full text-left px-4 py-2 rounded-full text-blue-800 dark:text-blue-200 font-medium hover:bg-blue-50 dark:hover:bg-gray-800 transition flex items-center"
+              className="flex items-center w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
             >
               About
             </Link>
@@ -120,27 +120,27 @@ const Headder = (props: Props) => {
             <div className="relative group">
               <Link
                 href={"/services"}
-                className="w-full text-left px-4 py-2 rounded-full text-blue-800 dark:text-blue-200 font-medium hover:bg-blue-50 dark:hover:bg-gray-800 transition flex justify-between items-center"
+                className="flex items-center justify-between w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
               >
                 Services
                 <span className="ml-2 ">▼</span>
               </Link>
-              <div className="absolute left-0 mt-2 w-40 bg-white dark:bg-gray-800 shadow-lg rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-20">
+              <div className="absolute left-0 z-20 w-40 mt-2 transition-opacity bg-white rounded-lg shadow-lg opacity-0 dark:bg-gray-800 group-hover:opacity-100">
                 <Link
                   href="/service1"
-                  className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                 >
                   Service1
                 </Link>
                 <Link
                   href="/service2"
-                  className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                 >
                   Service2
                 </Link>
                 <Link
                   href="/service3"
-                  className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                 >
                   Service3
                 </Link>
@@ -149,13 +149,13 @@ const Headder = (props: Props) => {
 
             <Link
               href="/blog"
-              className="w-full text-left px-4 py-2 rounded-full text-blue-800 dark:text-blue-200 font-medium hover:bg-blue-50 dark:hover:bg-gray-800 transition flex items-center"
+              className="flex items-center w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
             >
               Blog
             </Link>
             <Link
               href="/contact-us"
-              className="w-full text-nowrap text-left px-4 py-2 rounded-full text-blue-800 dark:text-blue-200 font-medium hover:bg-blue-50 dark:hover:bg-gray-800 transition flex items-center"
+              className="flex items-center w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full text-nowrap dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
             >
               Contact Us
             </Link>
@@ -163,7 +163,7 @@ const Headder = (props: Props) => {
 
           {/* User Profiles */}
           <div
-            className="hidden md:flex items-center space-x-4 relative"
+            className="relative items-center hidden space-x-4 md:flex"
             style={{ minWidth: "120px" }}
           >
             <ModeToggle />
@@ -173,9 +173,9 @@ const Headder = (props: Props) => {
               </Avatar>
             </button>
             {isAvatarOpen && (
-              <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 shadow-lg rounded-lg z-30">
+              <div className="absolute right-0 z-30 w-32 mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                 <button
-                  className="block w-full px-4 py-2 text-left text-blue-800 dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-700 font-medium rounded-lg"
+                  className="block w-full px-4 py-2 font-medium text-left text-blue-800 rounded-lg dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-700"
                   onClick={() => {
                     // Clear user and reload page
                     localStorage.removeItem("user");
@@ -190,7 +190,7 @@ const Headder = (props: Props) => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-600"
+            className="text-gray-600 md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <span className="text-2xl">{isMenuOpen ? "✕" : "☰"}</span>
@@ -198,13 +198,13 @@ const Headder = (props: Props) => {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div
-              className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 z-30 md:hidden"
+              className="fixed top-0 left-0 z-30 w-full h-full bg-black bg-opacity-40 md:hidden"
               onClick={() => setIsMenuOpen(false)}
             >
               {/* Mobile Menu Content */}
 
               <div
-                className="bg-white dark:bg-gray-900 w-64 h-full shadow-lg p-6 flex flex-col space-y-4 absolute left-0 top-0"
+                className="absolute top-0 left-0 flex flex-col w-64 h-full p-6 space-y-4 bg-white shadow-lg dark:bg-gray-900"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button onClick={() => setIsAvatarOpen((prev) => !prev)}>
@@ -213,9 +213,9 @@ const Headder = (props: Props) => {
                   </Avatar>
                 </button>
                 {isAvatarOpen && (
-                  <div className="mt-2 w-32 bg-white dark:bg-gray-800 shadow-lg rounded-lg z-30">
+                  <div className="z-30 w-32 mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                     <button
-                      className="block w-full px-4 py-2 text-left text-blue-800 dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-700 font-medium rounded-lg"
+                      className="block w-full px-4 py-2 font-medium text-left text-blue-800 rounded-lg dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-700"
                       onClick={() => {
                         // Clear user and reload page
                         localStorage.removeItem("user");
@@ -237,14 +237,14 @@ const Headder = (props: Props) => {
                 >
                   <Link
                     href="/home1"
-                    className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Home1
                   </Link>
                   <Link
                     href="/home2"
-                    className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Home2
@@ -253,7 +253,7 @@ const Headder = (props: Props) => {
                 {/* About */}
                 <Link
                   href="/about"
-                  className="block px-4 py-2 rounded-full text-blue-800 dark:text-blue-200 font-medium hover:bg-blue-50 dark:hover:bg-gray-800 transition"
+                  className="block px-4 py-2 font-medium text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   About
@@ -272,21 +272,21 @@ const Headder = (props: Props) => {
                 >
                   <Link
                     href="/service1"
-                    className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Service1
                   </Link>
                   <Link
                     href="/service2"
-                    className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Service2
                   </Link>
                   <Link
                     href="/service3"
-                    className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-gray-700 text-blue-800 dark:text-blue-200"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Service3
@@ -295,7 +295,7 @@ const Headder = (props: Props) => {
                 {/* Blog */}
                 <Link
                   href="/blog"
-                  className="block px-4 py-2 rounded-full text-blue-800 dark:text-blue-200 font-medium hover:bg-blue-50 dark:hover:bg-gray-800 transition"
+                  className="block px-4 py-2 font-medium text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Blog
@@ -303,7 +303,7 @@ const Headder = (props: Props) => {
                 {/* Contact Us */}
                 <Link
                   href="/contact-us"
-                  className="block px-4 py-2 rounded-full text-blue-800 dark:text-blue-200 font-medium hover:bg-blue-50 dark:hover:bg-gray-800 transition"
+                  className="block px-4 py-2 font-medium text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contact Us
