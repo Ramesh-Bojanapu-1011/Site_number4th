@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Headder from "@/components/Headder";
+import { link } from "fs";
 import React from "react";
 
 type Props = {};
@@ -31,38 +32,44 @@ const Service = (props: Props) => {
             {[
               {
                 title: "Web & App Development",
+                link: "/web-app-development",
                 desc: "Custom websites, web apps, and mobile solutions built with the latest technologies for performance and scalability.",
                 img: "/images/service-dev.jpg",
               },
               {
                 title: "UI/UX & Graphic Design",
+                link: "/ui-ux-design",
                 desc: "Modern, user-focused designs for web, mobile, and branding. Logos, banners, and complete visual identity packages.",
                 img: "/images/service-design.jpg",
               },
               {
                 title: "Content Writing",
+                link: "/content-writing",
                 desc: "SEO blogs, website copy, product descriptions, and creative content to engage your audience and boost your brand.",
                 img: "/images/service-content.jpg",
               },
               {
                 title: "Digital Marketing & SEO",
+                link: "/digital-marketing",
                 desc: "Grow your online presence with expert SEO, social media management, PPC, and email marketing strategies.",
                 img: "/images/service-marketing.jpg",
               },
               {
                 title: "Video Production & Animation",
+                link: "/video-production",
                 desc: "Promotional videos, explainer animations, and professional editing to tell your story and captivate your audience.",
                 img: "/images/service-video.jpg",
               },
               {
                 title: "Cloud & DevOps Services",
+                link: "/devops-services",
                 desc: "Scalable cloud infrastructure, CI/CD pipelines, and automation solutions to ensure smooth deployment and performance.",
                 img: "/images/service-cloud.jpg",
               },
             ].map((service, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center p-6 text-center transition shadow-lg cursor-pointer bg-gray-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-2xl"
+                className="flex flex-col items-center justify-between p-6 text-center transition shadow-lg cursor-pointer bg-gray-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-2xl"
               >
                 <img
                   src={service.img}
@@ -75,6 +82,12 @@ const Service = (props: Props) => {
                 <p className="text-gray-700 dark:text-gray-200">
                   {service.desc}
                 </p>
+                <a
+                  href={service.link}
+                  className="inline-block px-8 py-3 font-semibold text-white transition-all duration-300 bg-indigo-600 rounded-full shadow hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-700"
+                >
+                  Get Started
+                </a>
               </div>
             ))}
           </div>

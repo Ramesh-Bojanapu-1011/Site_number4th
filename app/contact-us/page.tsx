@@ -18,36 +18,18 @@ const ContactUs = (props: Props) => {
         </div>
       </section>
 
-      {/* Contact Info, Form, and Socials Combined Section */}
+      {/* Left side replaced with image */}
       <section className="py-16 bg-white dark:bg-gray-900">
-        <div className="grid items-start max-w-6xl gap-12 px-6 mx-auto md:grid-cols-2">
-          {/* Contact Info & Socials */}
-          <div className="space-y-10">
-            <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3">
-              <div>
-                <h3 className="mb-2 text-lg font-semibold text-indigo-700 dark:text-indigo-300">Email</h3>
-                <p className="text-gray-700 dark:text-gray-200">freelancer@example.com</p>
-              </div>
-              <div>
-                <h3 className="mb-2 text-lg font-semibold text-indigo-700 dark:text-indigo-300">Phone</h3>
-                <p className="text-gray-700 dark:text-gray-200">+1 234 567 8901</p>
-              </div>
-              <div>
-                <h3 className="mb-2 text-lg font-semibold text-indigo-700 dark:text-indigo-300">Location</h3>
-                <p className="text-gray-700 dark:text-gray-200">Remote / Global</p>
-              </div>
-            </div>
-            <div>
-              <h2 className="mb-4 text-2xl font-bold text-indigo-700 dark:text-indigo-300">Connect With Us</h2>
-              <div className="flex justify-center gap-8 text-2xl">
-                <a href="#" className="text-blue-600 transition hover:text-blue-800"><i className="fab fa-facebook"></i> Facebook</a>
-                <a href="#" className="transition text-sky-500 hover:text-sky-700"><i className="fab fa-twitter"></i> Twitter</a>
-                <a href="#" className="text-pink-600 transition hover:text-pink-800"><i className="fab fa-instagram"></i> Instagram</a>
-                <a href="#" className="text-blue-800 transition hover:text-blue-900"><i className="fab fa-linkedin"></i> LinkedIn</a>
-              </div>
-            </div>
+        <div className="grid items-center max-w-6xl gap-12 px-6 mx-auto md:grid-cols-2">
+          {/* Left Side: Image */}
+          <div className="flex items-center justify-center w-full h-full">
+            <img
+              src={require('@/public/Logo.png').default ?? '/Logo.png'}
+              alt="Contact Us"
+              className="object-contain w-full max-w-xs shadow-lg rounded-xl dark:bg-gray-800"
+            />
           </div>
-          {/* Contact Form */}
+          {/* Right Side: Contact Form */}
           <div>
             <h2 className="mb-6 text-2xl font-bold text-center text-purple-700 dark:text-purple-300">Send a Message</h2>
             <form className="space-y-6">
