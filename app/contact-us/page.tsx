@@ -1,20 +1,24 @@
-import Footer from '@/components/Footer';
-import Headder from '@/components/Headder';
- 
-import React from 'react'
+import Footer from "@/components/Footer";
+import Headder from "@/components/Headder";
 
-type Props = {}
+import React from "react";
 
+type Props = {};
 
 const ContactUs = (props: Props) => {
   return (
     <>
-    <Headder/>
+      <Headder />
       {/* Hero Section */}
       <section className="relative w-full h-[100vh] flex items-center justify-center bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-900 dark:to-gray-800 text-center">
         <div className="max-w-2xl px-4 mx-auto">
-          <h1 className="mb-4 text-4xl font-extrabold text-indigo-700 md:text-5xl dark:text-indigo-300">Contact Us</h1>
-          <p className="mb-6 text-lg text-gray-700 md:text-xl dark:text-gray-200">We'd love to hear from you! Reach out for project inquiries, support, or just to say hello.</p>
+          <h1 className="mb-4 text-4xl font-extrabold text-indigo-700 md:text-5xl dark:text-indigo-300">
+            Contact Us
+          </h1>
+          <p className="mb-6 text-lg text-gray-700 md:text-xl dark:text-gray-200">
+            We'd love to hear from you! Reach out for project inquiries,
+            support, or just to say hello.
+          </p>
         </div>
       </section>
 
@@ -24,22 +28,49 @@ const ContactUs = (props: Props) => {
           {/* Left Side: Image */}
           <div className="flex items-center justify-center w-full h-full">
             <img
-              src={require('@/public/Logo.png').default ?? '/Logo.png'}
+              src={require("@/public/Logo.png").default ?? "/Logo.png"}
               alt="Contact Us"
               className="object-contain w-full max-w-xs shadow-lg rounded-xl dark:bg-gray-800"
             />
           </div>
           {/* Right Side: Contact Form */}
           <div>
-            <h2 className="mb-6 text-2xl font-bold text-center text-purple-700 dark:text-purple-300">Send a Message</h2>
+            <h2 className="mb-6 text-2xl font-bold text-center text-purple-700 dark:text-purple-300">
+              Send a Message
+            </h2>
             <form className="space-y-6">
               <div className="grid gap-6 md:grid-cols-2">
-                <input type="text" placeholder="Your Name" className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400" required />
-                <input type="email" placeholder="Your Email" className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400" required />
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  required
+                />
               </div>
-              <input type="text" placeholder="Subject" className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400" required />
-              <textarea placeholder="Your Message" rows={5} className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400" required />
-              <button type="submit" className="w-full py-3 font-semibold text-white transition-all duration-300 bg-indigo-600 rounded-lg shadow hover:bg-indigo-700">Send Message</button>
+              <input
+                type="text"
+                placeholder="Subject"
+                className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                required
+              />
+              <textarea
+                placeholder="Your Message"
+                rows={5}
+                className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                required
+              />
+              <button
+                type="submit"
+                className="w-full py-3 font-semibold text-white transition-all duration-300 bg-indigo-600 rounded-lg shadow hover:bg-indigo-700"
+              >
+                Send Message
+              </button>
             </form>
           </div>
         </div>
@@ -48,19 +79,33 @@ const ContactUs = (props: Props) => {
       {/* 4. FAQ Section */}
       <section className="py-12 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-3xl px-6 mx-auto">
-          <h2 className="mb-6 text-2xl font-bold text-center text-purple-700 dark:text-purple-300">Frequently Asked Questions</h2>
+          <h2 className="mb-6 text-2xl font-bold text-center text-purple-700 dark:text-purple-300">
+            Frequently Asked Questions
+          </h2>
           <div className="space-y-4">
             <div className="p-4 bg-white rounded-lg shadow dark:bg-gray-900">
-              <h4 className="mb-1 font-semibold">How quickly will I get a response?</h4>
-              <p className="text-gray-700 dark:text-gray-200">We aim to respond to all inquiries within 24 hours.</p>
+              <h4 className="mb-1 font-semibold">
+                How quickly will I get a response?
+              </h4>
+              <p className="text-gray-700 dark:text-gray-200">
+                We aim to respond to all inquiries within 24 hours.
+              </p>
             </div>
             <div className="p-4 bg-white rounded-lg shadow dark:bg-gray-900">
-              <h4 className="mb-1 font-semibold">Can I request a custom service?</h4>
-              <p className="text-gray-700 dark:text-gray-200">Absolutely! Just describe your needs in the form and we’ll tailor a solution for you.</p>
+              <h4 className="mb-1 font-semibold">
+                Can I request a custom service?
+              </h4>
+              <p className="text-gray-700 dark:text-gray-200">
+                Absolutely! Just describe your needs in the form and we’ll
+                tailor a solution for you.
+              </p>
             </div>
             <div className="p-4 bg-white rounded-lg shadow dark:bg-gray-900">
               <h4 className="mb-1 font-semibold">Is my information safe?</h4>
-              <p className="text-gray-700 dark:text-gray-200">Yes, your privacy is important to us. We never share your details without consent.</p>
+              <p className="text-gray-700 dark:text-gray-200">
+                Yes, your privacy is important to us. We never share your
+                details without consent.
+              </p>
             </div>
           </div>
         </div>
@@ -69,7 +114,9 @@ const ContactUs = (props: Props) => {
       {/* 5. Map/Location Section */}
       <section className="py-12 text-center bg-white dark:bg-gray-900">
         <div className="mx-auto ">
-          <h2 className="mb-6 text-2xl font-bold text-indigo-700 dark:text-indigo-300">Our Location</h2>
+          <h2 className="mb-6 text-2xl font-bold text-indigo-700 dark:text-indigo-300">
+            Our Location
+          </h2>
           <div className="w-full overflow-hidden rounded-lg shadow h-[400px]">
             <iframe
               title="Google Map"
@@ -85,10 +132,9 @@ const ContactUs = (props: Props) => {
         </div>
       </section>
 
-       
-      <Footer/>
+      <Footer />
     </>
   );
-}
+};
 
-export default ContactUs
+export default ContactUs;

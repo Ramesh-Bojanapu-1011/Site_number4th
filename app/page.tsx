@@ -1,12 +1,10 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import Headder from "@/components/Headder";
-import Footer from "@/components/Footer";
+
 export default function Home() {
   return (
     <>
-      {/* <Headder /> */}
       <div>
         <div className={styles.heroSection}>
           <div className={styles.logoContainer}>
@@ -35,7 +33,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
