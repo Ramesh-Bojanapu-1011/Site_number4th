@@ -6,7 +6,7 @@ type Props = {};
 
 const Home2 = (props: Props) => {
   return (
-    <>
+    <main className="caret-transparent">
       <Headder />
 
       {/* Hero Section */}
@@ -95,7 +95,7 @@ const Home2 = (props: Props) => {
                 className="relative overflow-hidden transition duration-300 shadow cursor-pointer group rounded-xl hover:scale-105 hover:shadow-lg dark:bg-gray-900"
               >
                 <img
-                  src={`/images/project${item}.jpg`}
+                  src={`/project/${item}.jpg`}
                   alt={`Project ${item}`}
                   className="object-cover w-full h-56 transition duration-300 transform group-hover:scale-110"
                 />
@@ -189,7 +189,7 @@ const Home2 = (props: Props) => {
         </div>
       </section>
       <Footer />
-    </>
+    </main>
   );
 };
 

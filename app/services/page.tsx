@@ -1,13 +1,12 @@
 import Footer from "@/components/Footer";
 import Headder from "@/components/Headder";
-import { link } from "fs";
 import React from "react";
 
 type Props = {};
 
 const Service = (props: Props) => {
   return (
-    <>
+    <main className="caret-transparent">
       <Headder />
       {/* Hero Section */}
       <section className="relative w-full h-[100vh] flex items-center justify-center bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-900 dark:to-gray-800 text-center">
@@ -34,37 +33,38 @@ const Service = (props: Props) => {
                 title: "Web & App Development",
                 link: "/web-app-development",
                 desc: "Custom websites, web apps, and mobile solutions built with the latest technologies for performance and scalability.",
-                img: "/images/service-dev.jpg",
+                img: "/services/service-dev.jpg",
               },
               {
                 title: "UI/UX & Graphic Design",
                 link: "/ui-ux-design",
                 desc: "Modern, user-focused designs for web, mobile, and branding. Logos, banners, and complete visual identity packages.",
-                img: "/images/service-design.jpg",
+                img: "/services/service-design.jpg",
               },
               {
                 title: "Content Writing",
                 link: "/content-writing",
                 desc: "SEO blogs, website copy, product descriptions, and creative content to engage your audience and boost your brand.",
-                img: "/images/service-content.jpg",
+                img: "/services/service-content.jpg",
               },
               {
                 title: "Digital Marketing & SEO",
                 link: "/digital-marketing",
                 desc: "Grow your online presence with expert SEO, social media management, PPC, and email marketing strategies.",
-                img: "/images/service-marketing.jpg",
+                img: "/services/service-marketing.jpg",
               },
               {
                 title: "Video Production & Animation",
                 link: "/video-production",
                 desc: "Promotional videos, explainer animations, and professional editing to tell your story and captivate your audience.",
-                img: "/images/service-video.jpg",
+                img: "/services/service-video.jpg",
               },
               {
                 title: "Cloud & DevOps Services",
-                link: "/devops-services",
+                link: "/cloud-devops-services",
+
                 desc: "Scalable cloud infrastructure, CI/CD pipelines, and automation solutions to ensure smooth deployment and performance.",
-                img: "/images/service-cloud.jpg",
+                img: "/services/service-cloud.jpg",
               },
             ].map((service, idx) => (
               <div
@@ -223,7 +223,7 @@ const Service = (props: Props) => {
         </div>
       </section>
       <Footer />
-    </>
+    </main>
   );
 };
 

@@ -4,6 +4,8 @@ import Image from "next/image";
 import React from "react";
 import { ModeToggle } from "./ModeToggel";
 import { Avatar, AvatarFallback } from "./ui/avatar";
+import { useRouter } from "next/navigation";
+ 
 
 // MobileMenuItem component for mobile navigation
 type MobileMenuItemProps = {
@@ -21,6 +23,8 @@ function MobileMenuItem({
   link,
   toggle,
 }: MobileMenuItemProps) {
+
+  
   return (
     <div>
       <Link
@@ -40,6 +44,7 @@ function MobileMenuItem({
 type Props = {};
 
 const Headder = (props: Props) => {
+    const router = useRouter();
   // State for avatar dropdown
   const [isAvatarOpen, setIsAvatarOpen] = React.useState(false);
   // State for mobile menu toggle
@@ -53,22 +58,29 @@ const Headder = (props: Props) => {
 
   React.useEffect(() => {
     // Runs only in the browser
-    const userData = localStorage.getItem("user");
+    const userData = localStorage.getItem("users");
+    // console.log("User Data:", userData); // Debugging line
 
     if (userData) {
       try {
         const user = JSON.parse(userData);
-        const firstInitial = user.firstName?.[0]?.toUpperCase() || "R";
-        const lastInitial = user.lastName?.[0]?.toUpperCase() || "B";
+        console.log("Parsed User Data:", user); // Debugging line
+        const firstInitial = user[0].firstName?.[0]?.toUpperCase() || "R";
+        const lastInitial = user[0].lastName?.[0]?.toUpperCase() || "B";
         setUserInitials(firstInitial + lastInitial);
       } catch (error) {
         console.error("Failed to parse user data:", error);
       }
     }
   }, []);
+  const handleLogout = () => {
+    // Clear any local storage, cookies, or session data here
+    localStorage.removeItem("users"); // example
+    // Redirect to login page
+    router.push("/login");
+  };
 
-  console.log("User Initials:", userInitials); // Output: JD
-
+   
   return (
     <>
       {/* Navigation */}
@@ -125,24 +137,36 @@ const Headder = (props: Props) => {
                 Services
                 <span className="ml-2 ">▼</span>
               </Link>
-              <div className="absolute left-0 z-20 w-40 mt-2 transition-opacity bg-white rounded-lg shadow-lg opacity-0 dark:bg-gray-800 group-hover:opacity-100">
+              <div className="absolute left-0 z-20 mt-2 transition-opacity bg-white rounded-lg shadow-lg opacity-0 text-nowrap dark:bg-gray-800 group-hover:opacity-100">
                 <Link
-                  href="/service1"
+                  href="/web-app-development"
                   className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                 >
-                  Service1
+                  Web & App Development
                 </Link>
                 <Link
-                  href="/service2"
+                  href="/ui-ux-design"
                   className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                 >
-                  Service2
+                  UI/UX & Graphic Design
                 </Link>
                 <Link
-                  href="/service3"
+                  href="/content-writing"
                   className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                 >
-                  Service3
+                  Content Writing
+                </Link>
+                <Link
+                  href="/digital-marketing"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                >
+                  Digital Marketing & SEO
+                </Link>
+                <Link
+                  href="/video-production"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                >
+                  Video Production & Animation
                 </Link>
               </div>
             </div>
@@ -176,11 +200,7 @@ const Headder = (props: Props) => {
               <div className="absolute right-0 z-30 w-32 mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                 <button
                   className="block w-full px-4 py-2 font-medium text-left text-blue-800 rounded-lg dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-700"
-                  onClick={() => {
-                    // Clear user and reload page
-                    localStorage.removeItem("user");
-                    window.location.reload();
-                  }}
+                  onClick={handleLogout}
                 >
                   Logout
                 </button>
@@ -216,11 +236,7 @@ const Headder = (props: Props) => {
                   <div className="z-30 w-32 mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                     <button
                       className="block w-full px-4 py-2 font-medium text-left text-blue-800 rounded-lg dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-700"
-                      onClick={() => {
-                        // Clear user and reload page
-                        localStorage.removeItem("user");
-                        window.location.reload();
-                      }}
+                       onClick={handleLogout}
                     >
                       Logout
                     </button>
@@ -271,26 +287,35 @@ const Headder = (props: Props) => {
                   }
                 >
                   <Link
-                    href="/service1"
-                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Service1
-                  </Link>
-                  <Link
-                    href="/service2"
-                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Service2
-                  </Link>
-                  <Link
-                    href="/service3"
-                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Service3
-                  </Link>
+                  href="/web-app-development"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                >
+                  Web & App Development
+                </Link>
+                <Link
+                  href="/ui-ux-design"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                >
+                  UI/UX & Graphic Design
+                </Link>
+                <Link
+                  href="/content-writing"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                >
+                  Content Writing
+                </Link>
+                <Link
+                  href="/digital-marketing"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                >
+                  Digital Marketing & SEO
+                </Link>
+                <Link
+                  href="/video-production"
+                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                >
+                  Video Production & Animation
+                </Link>
                 </MobileMenuItem>
                 {/* Blog */}
                 <Link

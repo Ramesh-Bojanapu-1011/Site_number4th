@@ -44,7 +44,7 @@ const testimonials = [
 
 const DevopsServices = () => {
   return (
-    <main className="text-gray-900 bg-white dark:bg-gray-900 dark:text-gray-100">
+    <main className="text-gray-900 bg-white caret-transparent dark:bg-gray-900 dark:text-gray-100">
       <Headder />
       {/* Hero Section */}
       <section className="flex items-center justify-center h-screen text-center md:px-8 bg-gradient-to-br from-green-100 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
@@ -58,7 +58,7 @@ const DevopsServices = () => {
           </p>
           <a
             href="/contact-us"
-            className="inline-block px-6 py-3 text-white transition bg-green-600 rounded-lg shadow hover:bg-green-700"
+            className="inline-block px-6 py-3 text-white transition bg-blue-600 rounded-lg shadow hover:bg-blue-700"
           >
             Get Started
           </a>

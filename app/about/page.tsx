@@ -6,7 +6,7 @@ type Props = {};
 
 const About = (props: Props) => {
   return (
-    <>
+    <main className="caret-transparent">
       <Headder />
       {/* Hero Section */}
       <section className="relative flex items-center justify-center w-full h-screen text-center bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-900 dark:to-gray-800">
@@ -109,7 +109,7 @@ const About = (props: Props) => {
       </section>
 
       <Footer />
-    </>
+    </main>
   );
 };
 

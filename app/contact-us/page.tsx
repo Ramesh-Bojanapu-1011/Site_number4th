@@ -1,3 +1,4 @@
+"use client";
 import Footer from "@/components/Footer";
 import Headder from "@/components/Headder";
 
@@ -6,6 +7,43 @@ import React from "react";
 type Props = {};
 
 const ContactUs = (props: Props) => {
+  const formRef = React.useRef<HTMLFormElement | null>(null);
+  const [success, setSuccess] = React.useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = formRef.current;
+    if (!form) return;
+
+    const formData = new FormData(form);
+    const action = form.getAttribute("action");
+
+    if (!action) {
+      alert("Form action URL not found.");
+      return;
+    }
+
+    try {
+      const response = await fetch(action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        form.reset();
+        setSuccess(true);
+      } else {
+        alert("Oops! Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Oops! Something went wrong.");
+    }
+  };
   return (
     <>
       <Headder />
@@ -28,9 +66,9 @@ const ContactUs = (props: Props) => {
           {/* Left Side: Image */}
           <div className="flex items-center justify-center w-full h-full">
             <img
-              src={require("@/public/Logo.png").default ?? "/Logo.png"}
+              src={"/conatct-us.jpg"}
               alt="Contact Us"
-              className="object-contain w-full max-w-xs shadow-lg rounded-xl dark:bg-gray-800"
+              className="object-cover w-[356px] h-[356px] max-w-xs shadow-lg rounded-xl dark:bg-gray-800"
             />
           </div>
           {/* Right Side: Contact Form */}
@@ -38,17 +76,25 @@ const ContactUs = (props: Props) => {
             <h2 className="mb-6 text-2xl font-bold text-center text-purple-700 dark:text-purple-300">
               Send a Message
             </h2>
-            <form className="space-y-6">
+            <form
+              className="space-y-6"
+              ref={formRef}
+              onSubmit={handleSubmit}
+              action="https://formspree.io/f/xovlekvg"
+              method="POST"
+            >
               <div className="grid gap-6 md:grid-cols-2">
                 <input
                   type="text"
                   placeholder="Your Name"
+                  name="name"
                   className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                   required
                 />
                 <input
                   type="email"
                   placeholder="Your Email"
+                  name="email"
                   className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                   required
                 />
@@ -56,12 +102,14 @@ const ContactUs = (props: Props) => {
               <input
                 type="text"
                 placeholder="Subject"
+                name="subject"
                 className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required
               />
               <textarea
                 placeholder="Your Message"
                 rows={5}
+                name="message"
                 className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required
               />
@@ -72,6 +120,14 @@ const ContactUs = (props: Props) => {
                 Send Message
               </button>
             </form>
+            {success && (
+              <p
+                id="successMessage"
+                style={{ color: "green", marginTop: "10px" }}
+              >
+                Message sent successfully!
+              </p>
+            )}
           </div>
         </div>
       </section>

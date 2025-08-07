@@ -1,11 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { LocateFixed, MailCheck, Phone } from "lucide-react";
 
 type Props = {};
 
@@ -13,12 +8,12 @@ const Footer = (props: Props) => {
   return (
     <div>
       {/* Footer */}
-      <footer className="  text-blue-400 dark:text-blue-300 pt-20 pb-10 shadow-2xl border-t border-blue-900/30 backdrop-blur-md bg-opacity-90">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12 divide-y divide-blue-900/30 lg:divide-y-0 lg:divide-x">
-            <div className="lg:col-span-2 pb-8 lg:pb-0 lg:pr-8">
+      <footer className="pt-20 pb-10 text-blue-400 border-t shadow-2xl dark:text-blue-300 border-blue-900/30 backdrop-blur-md bg-opacity-90">
+        <div className="container px-4 mx-auto">
+          <div className="grid grid-cols-1 gap-8 mb-12 divide-y md:grid-cols-2 lg:grid-cols-5 divide-blue-900/30 lg:divide-y-0 lg:divide-x">
+            <div className="pb-8 lg:col-span-2 lg:pb-0 lg:pr-8">
               <div className="flex items-center mb-6">
-                <div className="rounded-lg flex items-center justify-center mr-3    p-2    ">
+                <div className="flex items-center justify-center p-2 mr-3 rounded-lg ">
                   <Image
                     src={"/logo1.png"}
                     alt={"Logo"}
@@ -171,7 +166,7 @@ const Footer = (props: Props) => {
                   <a
                     key={name}
                     href={afficial_link}
-                    className="w-10 h-10 rounded-full   dark:bg-gray-900 flex items-center justify-center hover:bg-blue-900/20 dark:hover:bg-blue-900/40 hover:text-blue-300 transition border border-blue-500/30 shadow-lg hover:shadow-blue-500/70 backdrop-blur-sm"
+                    className="flex items-center justify-center w-10 h-10 transition border rounded-full shadow-lg dark:bg-gray-900 hover:bg-blue-900/20 dark:hover:bg-blue-900/40 hover:text-blue-300 border-blue-500/30 hover:shadow-blue-500/70 backdrop-blur-sm"
                   >
                     <span className="sr-only">{name}</span>
                     {icon}
@@ -182,22 +177,23 @@ const Footer = (props: Props) => {
 
             <div className="pt-8 lg:pt-0 lg:pl-8">
               <h4 className="font-extrabold text-[#193cb8] dark:text-blue-300 text-lg mb-6 relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500 ">
-                For Clients
+                Quick Links
               </h4>
               <ul className="space-y-3">
                 {[
-                  "How to Hire",
-                  "Talent Marketplace",
-                  "Project Catalog",
-                  "Enterprise Solutions",
-                  "Payment Protection",
+                  { name: "Home1", link: "/home1" },
+                  { name: "Home2", link: "/home2" },
+                  { name: "About", link: "/about" },
+                  { name: "Services", link: "/services" },
+                  { name: "Blog", link: "/blog" },
+                  { name: "Contact", link: "/contact-us" },
                 ].map((item) => (
-                  <li key={item}>
+                  <li key={item.name}>
                     <a
-                      href="#"
+                      href={item.link}
                       className="hover:text-blue-300 transition text-[#193cb8] dark:text-blue-300     px-2 py-1      hover:shadow-blue-500/20"
                     >
-                      {item}
+                      {item.name}
                     </a>
                   </li>
                 ))}
@@ -210,18 +206,39 @@ const Footer = (props: Props) => {
               </h4>
               <ul className="space-y-3">
                 {[
-                  "How to Find Work",
-                  "Direct Contracts",
-                  "Get Paid",
-                  "Resources",
-                  "Community",
+                  {
+                    num: 1,
+                    name: "Web & App Development",
+                    link: "/web-app-development",
+                  },
+                  {
+                    num: 2,
+                    name: "UI/UX & Graphic Design",
+                    link: "/ui-ux-design",
+                  },
+                  { num: 3, name: "Content Writing", link: "/content-writing" },
+                  {
+                    num: 4,
+                    name: "Digital Marketing",
+                    link: "/digital-marketing",
+                  },
+                  {
+                    num: 5,
+                    name: "Video Production",
+                    link: "/video-production",
+                  },
+                  {
+                    num: 6,
+                    name: "Cloud & DevOps Services",
+                    link: "/cloud-devops-services",
+                  },
                 ].map((item) => (
-                  <li key={item}>
+                  <li key={item.num}>
                     <a
-                      href="#"
+                      href={item.link}
                       className="hover:text-blue-300 transition text-[#193cb8] dark:text-blue-300     px-2 py-1      hover:shadow-blue-500/20"
                     >
-                      {item}
+                      {item.name}
                     </a>
                   </li>
                 ))}
@@ -230,23 +247,32 @@ const Footer = (props: Props) => {
 
             <div className="pt-8 lg:pt-0 lg:pl-8">
               <h4 className="font-extrabold text-[#193cb8] dark:text-blue-300 text-lg mb-6 relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500 ">
-                Company
+                Conatct Us
               </h4>
               <ul className="space-y-3">
                 {[
-                  "About Us",
-                  "Leadership",
-                  "Careers",
-                  "Press",
-                  "Contact Us",
+                  {
+                    num: 1,
+                    name: "+192 123 4567",
+                    icon: <Phone size={15} className="mr-2" />,
+                  },
+                  {
+                    num: 2,
+                    name: "info@enkonix.in",
+                    icon: <MailCheck size={15} className="mr-2" />,
+                  },
+                  {
+                    num: 3,
+                    name: "123 Enkonix Street, City, Country",
+                    icon: <LocateFixed size={15} className="mr-2"/>
+                  },
+                  
                 ].map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="hover:text-blue-300 transition text-[#193cb8] dark:text-blue-300     px-2 py-1      hover:shadow-blue-500/20"
-                    >
-                      {item}
-                    </a>
+                  <li key={item.num} className="flex items-center">
+                    <div className="hover:text-blue-300 transition text-[#193cb8] dark:text-blue-300 flex    px-2 py-1  justify-center items-center     hover:shadow-blue-500/20">
+                      {item.icon}
+                      <p>{item.name}</p>
+                    </div>
                   </li>
                 ))}
               </ul>

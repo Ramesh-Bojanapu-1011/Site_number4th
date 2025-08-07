@@ -46,20 +46,22 @@ const WebAppDevelopment = () => {
     <main className="text-gray-900 bg-white dark:bg-gray-900 dark:text-gray-100">
       <Headder />
       {/* Hero Section */}
-      <section className="px-4 py-16 text-center md:px-8 bg-gradient-to-br from-blue-100 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
-        <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-          Web App Development Services for Modern Businesses
-        </h1>
-        <p className="max-w-2xl mx-auto mb-6 text-lg md:text-xl">
-          Build scalable, secure, and high-performance web applications tailored
-          to your business needs.
-        </p>
-        <a
-          href="/contact-us"
-          className="inline-block px-6 py-3 text-white transition bg-blue-600 rounded-lg shadow hover:bg-blue-700"
-        >
-          Get Started
-        </a>
+      <section className="flex items-center justify-center h-screen text-center md:px-8 bg-gradient-to-br from-blue-100 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
+        <div>
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">
+            Web App Development Services for Modern Businesses
+          </h1>
+          <p className="max-w-2xl mx-auto mb-6 text-lg md:text-xl">
+            Build scalable, secure, and high-performance web applications
+            tailored to your business needs.
+          </p>
+          <a
+            href="/contact-us"
+            className="inline-block px-6 py-3 text-white transition bg-blue-600 rounded-lg shadow hover:bg-blue-700"
+          >
+            Get Started
+          </a>
+        </div>
       </section>
 
       {/* Services Offered */}
