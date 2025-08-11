@@ -10,17 +10,7 @@ const Home2 = (props: Props) => {
       <Headder />
 
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center w-full h-screen overflow-hidden text-center ">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover z-[-1]  "
-        >
-          <source src="\vedio2.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <section className="relative flex items-center justify-center w-full h-screen overflow-hidden text-center bg-gradient-to-br from-blue-100 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
         <div className="absolute top-0 left-0 z-0 w-full h-full bg-opacity-30" />
         <div className="relative z-10 flex items-center justify-center h-full px-4 text-center">
           <div className="max-w-3xl mx-auto">
@@ -181,7 +171,7 @@ const Home2 = (props: Props) => {
             consultation.
           </p>
           <a
-            href="mailto:freelancer@example.com"
+            href="/contact-us"
             className="inline-block px-8 py-3 font-semibold text-white transition-all duration-300 bg-indigo-600 rounded-full shadow hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-700"
           >
             Contact Me

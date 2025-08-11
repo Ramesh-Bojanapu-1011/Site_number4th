@@ -4,20 +4,18 @@ import dynamic from "next/dynamic";
 
 import React from "react";
 
-
 type Props = {};
 
 const AdminDashbord = (props: Props) => {
-  const ClientChart = dynamic(() => import('@/components/Dashbord'), {
-  ssr: false, // Avoid SSR
-});
-  
+  const ClientChart = dynamic(() => import("@/components/Dashbord"), {
+    ssr: false, // Avoid SSR
+  });
+
   return (
     <>
       <div>
         <Headder />
         <ClientChart />
-        
       </div>
     </>
   );
