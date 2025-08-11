@@ -264,9 +264,8 @@ const Footer = (props: Props) => {
                   {
                     num: 3,
                     name: "123 Enkonix Street, City, Country",
-                    icon: <LocateFixed size={15} className="mr-2"/>
+                    icon: <LocateFixed size={15} className="mr-2" />,
                   },
-                  
                 ].map((item) => (
                   <li key={item.num} className="flex items-center">
                     <div className="hover:text-blue-300 transition text-[#193cb8] dark:text-blue-300 flex    px-2 py-1  justify-center items-center     hover:shadow-blue-500/20">

@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
-
 import Headder from "@/components/Headder";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
 const HomePage = () => {
   return (
-    <>
+    <main className=" caret-transparent">
       <Headder />
       <div className="bg-white dark:bg-gray-900">
         {/* Hero Section */}
@@ -210,7 +209,7 @@ const HomePage = () => {
         </section>
       </div>
       <Footer />
-    </>
+    </main>
   );
 };
 

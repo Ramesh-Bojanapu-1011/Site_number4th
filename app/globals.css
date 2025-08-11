@@ -116,7 +116,176 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes fade-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-left {
+    animation: fade-left 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes fade-right {
+    0% {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-right {
+    animation: fade-right 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes fade-top {
+    0% {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-top {
+    animation: fade-top 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes fade-down {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-down {
+    animation: fade-down 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes zoom-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-zoom-in {
+    animation: zoom-in 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes zoom-out {
+    0% {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-zoom-out {
+    animation: zoom-out 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes rotate-in {
+    0% {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.8);
+    }
+
+    100% {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  .animate-rotate-in {
+    animation: rotate-in 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    70% {
+      transform: scale(0.9);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) both;
+  }
+
+  @keyframes flip-in {
+    0% {
+      opacity: 0;
+      transform: rotateY(90deg);
+    }
+
+    100% {
+      opacity: 1;
+      transform: rotateY(0deg);
+    }
+  }
+
+  .animate-flip-in {
+    animation: flip-in 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
   }
 }

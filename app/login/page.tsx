@@ -4,7 +4,9 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const LoginPage = () => {
-  const [view, setView] = useState<"login" | "register" | "forgotPassword">("login");
+  const [view, setView] = useState<"login" | "register" | "forgotPassword">(
+    "login",
+  );
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -99,7 +101,9 @@ const LoginPage = () => {
       <div className="relative z-10 w-full max-w-md p-8 border border-blue-100 shadow-xl bg-white/90 dark:bg-gray-900/90 rounded-2xl dark:border-gray-800 backdrop-blur-md">
         {view === "login" && (
           <>
-            <h2 className="mb-6 text-3xl font-bold text-center text-blue-700 dark:text-blue-400">Login</h2>
+            <h2 className="mb-6 text-3xl font-bold text-center text-blue-700 dark:text-blue-400">
+              Login
+            </h2>
             <input
               type="email"
               name="email"
@@ -142,7 +146,9 @@ const LoginPage = () => {
         )}
         {view === "register" && (
           <>
-            <h2 className="mb-6 text-3xl font-bold text-center text-blue-700 dark:text-blue-400">Register</h2>
+            <h2 className="mb-6 text-3xl font-bold text-center text-blue-700 dark:text-blue-400">
+              Register
+            </h2>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <input
                 type="text"
@@ -206,7 +212,9 @@ const LoginPage = () => {
         )}
         {view === "forgotPassword" && (
           <>
-            <h2 className="mb-6 text-3xl font-bold text-center text-blue-700 dark:text-blue-400">Forgot Password</h2>
+            <h2 className="mb-6 text-3xl font-bold text-center text-blue-700 dark:text-blue-400">
+              Forgot Password
+            </h2>
             <input
               type="email"
               name="email"
