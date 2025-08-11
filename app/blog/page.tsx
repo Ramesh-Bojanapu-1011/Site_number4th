@@ -5,19 +5,19 @@ const blogPosts = [
   {
     title: "How to Start Freelancing: A Beginner's Guide",
     excerpt: "Learn the essential steps to launch your freelance career, from building a portfolio to finding your first clients.",
-    image: "/public/1.jpg",
+    image: "/blog/1.jpg",
     link: "/how-to-start-freelancing",
   },
   {
     title: "Top 5 Skills Every Freelancer Needs in 2025",
     excerpt: "Discover the most in-demand skills for freelancers and how to stay ahead in a competitive market.",
-    image: "/public/2.png",
+    image: "/blog/2.jpg",
     link: "/top-5-skills-every-freelancer-needs",
   },
   {
     title: "Balancing Multiple Projects as a Freelancer",
     excerpt: "Tips and strategies for managing your time, clients, and workload effectively as a freelancer.",
-    image: "/public/Logo.png",
+    image: "/blog/3.jpg",
     link: "/balancing-multiple-projects",
   },
 ];

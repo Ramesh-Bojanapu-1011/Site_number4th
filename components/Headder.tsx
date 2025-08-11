@@ -5,7 +5,6 @@ import React from "react";
 import { ModeToggle } from "./ModeToggel";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { useRouter } from "next/navigation";
- 
 
 // MobileMenuItem component for mobile navigation
 type MobileMenuItemProps = {
@@ -23,8 +22,6 @@ function MobileMenuItem({
   link,
   toggle,
 }: MobileMenuItemProps) {
-
-  
   return (
     <div>
       <Link
@@ -44,7 +41,7 @@ function MobileMenuItem({
 type Props = {};
 
 const Headder = (props: Props) => {
-    const router = useRouter();
+  const router = useRouter();
   // State for avatar dropdown
   const [isAvatarOpen, setIsAvatarOpen] = React.useState(false);
   // State for mobile menu toggle
@@ -52,6 +49,11 @@ const Headder = (props: Props) => {
   const [userInitials, setUserInitials] = React.useState(""); // Default initials
   // State for mobile submenus
   const [mobileOpen, setMobileOpen] = React.useState<{
+    home: boolean;
+    services: boolean;
+  }>({ home: false, services: false });
+  // State for desktop dropdowns
+  const [desktopDropdown, setDesktopDropdown] = React.useState<{
     home: boolean;
     services: boolean;
   }>({ home: false, services: false });
@@ -80,7 +82,6 @@ const Headder = (props: Props) => {
     router.push("/login");
   };
 
-   
   return (
     <>
       {/* Navigation */}
@@ -96,29 +97,34 @@ const Headder = (props: Props) => {
 
           {/* Desktop Navigation */}
           <div className="items-center hidden md:flex">
-            {/* Home with submenu - styled like mobile */}
-            <div className="relative group">
-              <Link
-                href={"/"}
+            {/* Home with submenu - open on click only */}
+            <div className="relative">
+              <button
+                type="button"
                 className="flex items-center justify-between w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
+                onClick={() =>
+                  setDesktopDropdown((prev) => ({ ...prev, home: !prev.home }))
+                }
               >
                 Home
                 <span className="ml-2">▼</span>
-              </Link>
-              <div className="absolute left-0 z-20 w-32 mt-2 transition-opacity bg-white rounded-lg shadow-lg opacity-0 dark:bg-gray-800 group-hover:opacity-100">
-                <Link
-                  href="/home1"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Home1
-                </Link>
-                <Link
-                  href="/home2"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Home2
-                </Link>
-              </div>
+              </button>
+              {desktopDropdown.home && (
+                <div className="absolute left-0 z-20 w-32 mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                  <Link
+                    href="/home1"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Home1
+                  </Link>
+                  <Link
+                    href="/home2"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Home2
+                  </Link>
+                </div>
+              )}
             </div>
             {/* About */}
             <Link
@@ -128,47 +134,62 @@ const Headder = (props: Props) => {
               About
             </Link>
 
-            {/* Services with submenu - styled like mobile */}
-            <div className="relative group">
-              <Link
-                href={"/services"}
+            {/* Services with submenu - open on click only */}
+            <div className="relative">
+              <button
+                type="button"
                 className="flex items-center justify-between w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
+                onClick={() =>
+                  setDesktopDropdown((prev) => ({
+                    ...prev,
+                    services: !prev.services,
+                  }))
+                }
               >
                 Services
-                <span className="ml-2 ">▼</span>
-              </Link>
-              <div className="absolute left-0 z-20 mt-2 transition-opacity bg-white rounded-lg shadow-lg opacity-0 text-nowrap dark:bg-gray-800 group-hover:opacity-100">
-                <Link
-                  href="/web-app-development"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Web & App Development
-                </Link>
-                <Link
-                  href="/ui-ux-design"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  UI/UX & Graphic Design
-                </Link>
-                <Link
-                  href="/content-writing"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Content Writing
-                </Link>
-                <Link
-                  href="/digital-marketing"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Digital Marketing & SEO
-                </Link>
-                <Link
-                  href="/video-production"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Video Production & Animation
-                </Link>
-              </div>
+                <span className="ml-2">▼</span>
+              </button>
+              {desktopDropdown.services && (
+                <div className="absolute left-0 z-20 mt-2 bg-white rounded-lg shadow-lg text-nowrap dark:bg-gray-800">
+                  <Link
+                    href="/services"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    All Services
+                  </Link>
+
+                  <Link
+                    href="/web-app-development"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Web & App Development
+                  </Link>
+                  <Link
+                    href="/ui-ux-design"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    UI/UX & Graphic Design
+                  </Link>
+                  <Link
+                    href="/content-writing"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Content Writing
+                  </Link>
+                  <Link
+                    href="/digital-marketing"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Digital Marketing & SEO
+                  </Link>
+                  <Link
+                    href="/video-production"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Video Production & Animation
+                  </Link>
+                </div>
+              )}
             </div>
 
             <Link
@@ -236,7 +257,7 @@ const Headder = (props: Props) => {
                   <div className="z-30 w-32 mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                     <button
                       className="block w-full px-4 py-2 font-medium text-left text-blue-800 rounded-lg dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-700"
-                       onClick={handleLogout}
+                      onClick={handleLogout}
                     >
                       Logout
                     </button>
@@ -287,35 +308,35 @@ const Headder = (props: Props) => {
                   }
                 >
                   <Link
-                  href="/web-app-development"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Web & App Development
-                </Link>
-                <Link
-                  href="/ui-ux-design"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  UI/UX & Graphic Design
-                </Link>
-                <Link
-                  href="/content-writing"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Content Writing
-                </Link>
-                <Link
-                  href="/digital-marketing"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Digital Marketing & SEO
-                </Link>
-                <Link
-                  href="/video-production"
-                  className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
-                >
-                  Video Production & Animation
-                </Link>
+                    href="/web-app-development"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Web & App Development
+                  </Link>
+                  <Link
+                    href="/ui-ux-design"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    UI/UX & Graphic Design
+                  </Link>
+                  <Link
+                    href="/content-writing"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Content Writing
+                  </Link>
+                  <Link
+                    href="/digital-marketing"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Digital Marketing & SEO
+                  </Link>
+                  <Link
+                    href="/video-production"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    Video Production & Animation
+                  </Link>
                 </MobileMenuItem>
                 {/* Blog */}
                 <Link

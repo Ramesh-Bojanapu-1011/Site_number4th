@@ -3,6 +3,7 @@ import React from "react";
 
 import Headder from "@/components/Headder";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 const HomePage = () => {
   return (
@@ -20,12 +21,18 @@ const HomePage = () => {
               business.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <button className="px-8 py-3 font-semibold text-white transition bg-blue-600 rounded-lg shadow hover:bg-blue-700">
+              <Link
+                href={"/contact-us"}
+                className="px-8 py-3 font-semibold text-white transition bg-blue-600 rounded-lg shadow hover:bg-blue-700"
+              >
                 Hire Now
-              </button>
-              <button className="px-8 py-3 font-semibold text-blue-600 transition bg-white border border-blue-600 rounded-lg shadow hover:bg-blue-50 dark:bg-gray-900 dark:text-blue-200 dark:border-blue-400">
+              </Link>
+              <Link
+                href={"/services"}
+                className="px-8 py-3 font-semibold text-blue-600 transition bg-white border border-blue-600 rounded-lg shadow hover:bg-blue-50 dark:bg-gray-900 dark:text-blue-200 dark:border-blue-400"
+              >
                 Browse Freelancers
-              </button>
+              </Link>
             </div>
           </div>
         </section>
