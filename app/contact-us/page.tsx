@@ -48,7 +48,7 @@ const ContactUs = (props: Props) => {
     <>
       <Headder />
       {/* Hero Section */}
-      <section className="relative w-full h-[100vh] flex items-center justify-center bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-900 dark:to-gray-800 text-center">
+      <section className="relative w-full h-[100vh] flex items-center justify-center bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-900 dark:to-gray-800 text-center caret-transparent">
         <div className="max-w-2xl px-4 mx-auto">
           <h1 className="mb-4 text-4xl font-extrabold text-indigo-700 md:text-5xl dark:text-indigo-300">
             Contact Us
@@ -133,7 +133,7 @@ const ContactUs = (props: Props) => {
       </section>
 
       {/* 4. FAQ Section */}
-      <section className="py-12 bg-gray-50 dark:bg-gray-800">
+      <section className="py-12 bg-gray-50 dark:bg-gray-800 caret-transparent">
         <div className="max-w-3xl px-6 mx-auto">
           <h2 className="mb-6 text-2xl font-bold text-center text-purple-700 dark:text-purple-300">
             Frequently Asked Questions

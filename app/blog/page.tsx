@@ -27,7 +27,7 @@ const blogPosts = [
 
 const Blog = () => {
   return (
-    <main className="text-gray-900 bg-white dark:bg-gray-900 dark:text-gray-100">
+    <main className="text-gray-900 bg-white dark:bg-gray-900 dark:text-gray-100 caret-transparent">
       <Headder />
       {/* Hero Section */}
       <section className="flex items-center justify-center h-screen text-center md:px-8 bg-gradient-to-br from-blue-100 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
@@ -44,7 +44,7 @@ const Blog = () => {
 
       {/* Freelance Content Section */}
       <section className="max-w-3xl px-4 py-12 mx-auto md:px-8">
-        <h2 className="mb-4 text-2xl font-semibold">
+        <h2 className="mb-4 text-2xl font-semibold text-center">
           Why Freelancing is the Future of Work
         </h2>
         <p className="mb-2 text-gray-700 dark:text-gray-300">
