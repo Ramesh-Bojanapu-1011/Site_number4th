@@ -32,7 +32,7 @@ const LoginPage = () => {
     if (typeof window !== "undefined") {
       if (
         formData.email === "admin@enkonix.in" &&
-        formData.password === "admin@123"
+        formData.password === "admin123"
       ) {
         router.push("/admin-dashboard");
       } else if (user) {
