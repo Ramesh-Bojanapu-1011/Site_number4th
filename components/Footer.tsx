@@ -1,10 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import { LocateFixed, MailCheck, Phone } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
+import translations from "@/trancelate/trancelate";
 
 type Props = {};
 
 const Footer = (props: Props) => {
+  const { language } = useLanguage();
+  const t = translations[language as keyof typeof translations].footer;
   return (
     <div>
       {/* Footer */}
@@ -23,8 +27,7 @@ const Footer = (props: Props) => {
                 </div>
               </div>
               <p className="mb-6 max-w-md text-[#193cb8] dark:text-blue-300">
-                Connecting businesses with top talent worldwide to get projects
-                done efficiently and effectively.
+                {t.description}
               </p>
               <div className="flex space-x-4">
                 {[
@@ -177,17 +180,10 @@ const Footer = (props: Props) => {
 
             <div className="pt-8 lg:pt-0 lg:pl-8">
               <h4 className="font-extrabold text-[#193cb8] dark:text-blue-300 text-lg mb-6 relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500 ">
-                Quick Links
+                {t.quickLinks}
               </h4>
               <ul className="space-y-3">
-                {[
-                  { name: "Home1", link: "/home1" },
-                  { name: "Home2", link: "/home2" },
-                  { name: "About", link: "/about" },
-                  { name: "Services", link: "/services" },
-                  { name: "Blog", link: "/blog" },
-                  { name: "Contact", link: "/contact-us" },
-                ].map((item) => (
+                {t.links.map((item: any) => (
                   <li key={item.name}>
                     <a
                       href={item.link}
@@ -202,37 +198,10 @@ const Footer = (props: Props) => {
 
             <div className="pt-8 lg:pt-0 lg:pl-8">
               <h4 className="font-extrabold text-[#193cb8] dark:text-blue-300 text-lg mb-6 relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500 ">
-                For Freelancers
+                {t.forFreelancers}
               </h4>
               <ul className="space-y-3">
-                {[
-                  {
-                    num: 1,
-                    name: "Web & App Development",
-                    link: "/web-app-development",
-                  },
-                  {
-                    num: 2,
-                    name: "UI/UX & Graphic Design",
-                    link: "/ui-ux-design",
-                  },
-                  { num: 3, name: "Content Writing", link: "/content-writing" },
-                  {
-                    num: 4,
-                    name: "Digital Marketing",
-                    link: "/digital-marketing",
-                  },
-                  {
-                    num: 5,
-                    name: "Video Production",
-                    link: "/video-production",
-                  },
-                  {
-                    num: 6,
-                    name: "Cloud & DevOps Services",
-                    link: "/cloud-devops-services",
-                  },
-                ].map((item) => (
+                {t.freelancerLinks.map((item: any) => (
                   <li key={item.num}>
                     <a
                       href={item.link}
@@ -247,29 +216,19 @@ const Footer = (props: Props) => {
 
             <div className="pt-8 lg:pt-0 lg:pl-8">
               <h4 className="font-extrabold text-[#193cb8] dark:text-blue-300 text-lg mb-6 relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500 ">
-                Conatct Us
+                {t.contactUs}
               </h4>
               <ul className="space-y-3">
-                {[
-                  {
-                    num: 1,
-                    name: "+192 123 4567",
-                    icon: <Phone size={15} className="mr-2" />,
-                  },
-                  {
-                    num: 2,
-                    name: "info@enkonix.in",
-                    icon: <MailCheck size={15} className="mr-2" />,
-                  },
-                  {
-                    num: 3,
-                    name: "123 Enkonix Street, City, Country",
-                    icon: <LocateFixed size={15} className="mr-2" />,
-                  },
-                ].map((item) => (
+                {t.contactDetails.map((item: any) => (
                   <li key={item.num} className="flex items-center">
                     <div className="hover:text-blue-300 transition text-[#193cb8] dark:text-blue-300 flex    px-2 py-1  justify-center items-center     hover:shadow-blue-500/20">
-                      {item.icon}
+                      {item.num === 1 && <Phone size={15} className="mr-2" />}
+                      {item.num === 2 && (
+                        <MailCheck size={15} className="mr-2" />
+                      )}
+                      {item.num === 3 && (
+                        <LocateFixed size={15} className="mr-2" />
+                      )}
                       <p>{item.name}</p>
                     </div>
                   </li>
@@ -280,8 +239,7 @@ const Footer = (props: Props) => {
 
           <div className="pt-8 border-t border-blue-900/30 text-center text-[#193cb8] dark:text-blue-300">
             <p>
-              &copy; {new Date().getFullYear()} FreelancerHub. All rights
-              reserved.
+              &copy; {new Date().getFullYear()} {t.copyright}
             </p>
           </div>
         </div>

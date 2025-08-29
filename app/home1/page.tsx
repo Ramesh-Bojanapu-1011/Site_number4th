@@ -1,10 +1,15 @@
 "use client";
+
 import React from "react";
 import Headder from "@/components/Headder";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import { useLanguage } from "@/components/LanguageContext";
+import translations from "@/trancelate/trancelate";
 
 const HomePage = () => {
+  const { language } = useLanguage();
+  const t = translations[language as keyof typeof translations].home1;
   return (
     <main className=" caret-transparent">
       <Headder />
@@ -13,24 +18,23 @@ const HomePage = () => {
         <section className="flex items-center justify-center h-screen text-center bg-gradient-to-br from-blue-100 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
           <div className="">
             <h1 className="mb-4 text-4xl font-bold text-blue-900 md:text-5xl dark:text-blue-200">
-              Find the Right Freelancer for Your Project
+              {t.heroTitle}
             </h1>
             <p className="mb-8 text-lg text-gray-700 md:text-xl dark:text-gray-300">
-              Connect with top talent, get work done faster, and grow your
-              business.
+              {t.heroDesc}
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href={"/contact-us"}
                 className="px-8 py-3 font-semibold text-white transition bg-blue-600 rounded-lg shadow hover:bg-blue-700"
               >
-                Hire Now
+                {t.hireNow}
               </Link>
               <Link
                 href={"/services"}
                 className="px-8 py-3 font-semibold text-blue-600 transition bg-white border border-blue-600 rounded-lg shadow hover:bg-blue-50 dark:bg-gray-900 dark:text-blue-200 dark:border-blue-400"
               >
-                Browse Freelancers
+                {t.browseFreelancers}
               </Link>
             </div>
           </div>
@@ -39,35 +43,27 @@ const HomePage = () => {
         {/* About Freelancing (Updated) */}
         <section className="px-4 py-16 mx-auto md:px-8 bg-blue-50 dark:bg-gray-900">
           <h2 className="mb-4 text-3xl font-semibold text-center">
-            Why Freelancing?
+            {t.whyFreelancing}
           </h2>
           <p className="mb-10 text-lg text-center text-gray-700 dark:text-gray-300">
-            In today’s fast-paced digital world, agility is key. Freelancers
-            offer on-demand expertise, flexible collaboration, and a global
-            talent pool—without the long-term overhead.
+            {t.whyDesc}
           </p>
           <div className="grid gap-8 md:grid-cols-4">
             <div className="p-6 text-center transition-transform duration-300 shadow bg-blue-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-xl">
-              <h3 className="mb-2 text-xl font-bold">Flexible Engagement</h3>
-              <p>
-                Scale teams up or down instantly to match your project needs.
-              </p>
+              <h3 className="mb-2 text-xl font-bold">{t.flexible}</h3>
+              <p>{t.flexibleDesc}</p>
             </div>
             <div className="p-6 text-center transition-transform duration-300 shadow bg-blue-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-xl">
-              <h3 className="mb-2 text-xl font-bold">Cost-Efficient</h3>
-              <p>
-                Hire by project, not by payroll. Reduce overhead significantly.
-              </p>
+              <h3 className="mb-2 text-xl font-bold">{t.cost}</h3>
+              <p>{t.costDesc}</p>
             </div>
             <div className="p-6 text-center transition-transform duration-300 shadow bg-blue-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-xl">
-              <h3 className="mb-2 text-xl font-bold">Global Talent</h3>
-              <p>Access industry specialists across borders and time zones.</p>
+              <h3 className="mb-2 text-xl font-bold">{t.global}</h3>
+              <p>{t.globalDesc}</p>
             </div>
             <div className="p-6 text-center transition-transform duration-300 shadow bg-blue-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-xl">
-              <h3 className="mb-2 text-xl font-bold">Fast Execution</h3>
-              <p>
-                Freelancers get things done quickly—without corporate delays.
-              </p>
+              <h3 className="mb-2 text-xl font-bold">{t.fast}</h3>
+              <p>{t.fastDesc}</p>
             </div>
           </div>
         </section>
@@ -75,55 +71,55 @@ const HomePage = () => {
         {/* Top Categories */}
         <section className="max-w-6xl px-4 py-16 mx-auto bg-white md:px-8 dark:bg-gray-800">
           <h2 className="mb-10 text-3xl font-semibold text-center">
-            Top Services
+            {t.topServices}
           </h2>
           <div className="grid gap-8 md:grid-cols-4">
             <div className="p-6 text-center transition-transform duration-300 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:scale-105 hover:shadow-xl">
-              Web Development
+              {t.webDev}
               <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300">
-                Build websites, web apps & responsive UIs.
+                {t.webDevDesc}
               </span>
             </div>
             <div className="p-6 text-center transition-transform duration-300 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:scale-105 hover:shadow-xl">
-              Graphic Design
+              {t.design}
               <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300">
-                Logos, branding, and creative visuals.
+                {t.designDesc}
               </span>
             </div>
             <div className="p-6 text-center transition-transform duration-300 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:scale-105 hover:shadow-xl">
-              Content Writing
+              {t.writing}
               <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300">
-                SEO blogs, product descriptions & more.
+                {t.writingDesc}
               </span>
             </div>
             <div className="p-6 text-center transition-transform duration-300 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:scale-105 hover:shadow-xl">
-              Digital Marketing
+              {t.marketing}
               <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300">
-                Boost visibility with smart marketing.
+                {t.marketingDesc}
               </span>
             </div>
             <div className="p-6 text-center transition-transform duration-300 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:scale-105 hover:shadow-xl">
-              Virtual Assistance
+              {t.va}
               <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300">
-                Admin support, scheduling, research & more.
+                {t.vaDesc}
               </span>
             </div>
             <div className="p-6 text-center transition-transform duration-300 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:scale-105 hover:shadow-xl">
-              Video Editing
+              {t.video}
               <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300">
-                Reels, promos & professional edits.
+                {t.videoDesc}
               </span>
             </div>
             <div className="p-6 text-center transition-transform duration-300 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:scale-105 hover:shadow-xl">
-              App Development
+              {t.appDev}
               <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300">
-                Build mobile apps for iOS & Android.
+                {t.appDevDesc}
               </span>
             </div>
             <div className="p-6 text-center transition-transform duration-300 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:scale-105 hover:shadow-xl">
-              SEO Optimization
+              {t.seo}
               <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300">
-                Rank higher with on-page & technical SEO.
+                {t.seoDesc}
               </span>
             </div>
           </div>
@@ -132,40 +128,36 @@ const HomePage = () => {
         {/* How It Works */}
         <section className="px-4 py-16 mx-auto md:px-8 bg-blue-50 dark:bg-gray-900">
           <h2 className="mb-10 text-3xl font-semibold text-center">
-            How It Works
+            {t.howItWorks}
           </h2>
           <div className="grid gap-8 md:grid-cols-4">
             <div className="p-6 text-center transition-transform duration-300 shadow bg-blue-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-xl">
               <div className="flex items-center justify-center w-10 h-10 mx-auto mb-2 text-lg font-bold text-white bg-blue-600 rounded-full">
                 1
               </div>
-              <h3 className="mb-2 text-xl font-bold">Post a Job</h3>
-              <p>Describe your project and what you're looking for.</p>
+              <h3 className="mb-2 text-xl font-bold">{t.postJob}</h3>
+              <p>{t.postJobDesc}</p>
             </div>
             <div className="p-6 text-center transition-transform duration-300 shadow bg-blue-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-xl">
               <div className="flex items-center justify-center w-10 h-10 mx-auto mb-2 text-lg font-bold text-white bg-blue-600 rounded-full">
                 2
               </div>
-              <h3 className="mb-2 text-xl font-bold">Receive Proposals</h3>
-              <p>Get matched with top freelancers who are ready to help.</p>
+              <h3 className="mb-2 text-xl font-bold">{t.receive}</h3>
+              <p>{t.receiveDesc}</p>
             </div>
             <div className="p-6 text-center transition-transform duration-300 shadow bg-blue-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-xl">
               <div className="flex items-center justify-center w-10 h-10 mx-auto mb-2 text-lg font-bold text-white bg-blue-600 rounded-full">
                 3
               </div>
-              <h3 className="mb-2 text-xl font-bold">
-                Hire the Right Freelancer
-              </h3>
-              <p>Choose the best fit and get started immediately.</p>
+              <h3 className="mb-2 text-xl font-bold">{t.hire}</h3>
+              <p>{t.hireDesc}</p>
             </div>
             <div className="p-6 text-center transition-transform duration-300 shadow bg-blue-50 dark:bg-gray-800 rounded-xl hover:scale-105 hover:shadow-xl">
               <div className="flex items-center justify-center w-10 h-10 mx-auto mb-2 text-lg font-bold text-white bg-blue-600 rounded-full">
                 4
               </div>
-              <h3 className="mb-2 text-xl font-bold">Get Your Project Done</h3>
-              <p>
-                Track progress, communicate easily, and receive quality work.
-              </p>
+              <h3 className="mb-2 text-xl font-bold">{t.done}</h3>
+              <p>{t.doneDesc}</p>
             </div>
           </div>
         </section>
@@ -173,23 +165,19 @@ const HomePage = () => {
         {/* Testimonials */}
         <section className="max-w-4xl px-4 py-16 mx-auto bg-white md:px-8 dark:bg-gray-800">
           <h2 className="mb-10 text-3xl font-semibold text-center">
-            What Our Users Say
+            {t.testimonials}
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
             <div className="p-6 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700">
-              <p className="mb-2 italic">
-                "Great platform to find talented freelancers quickly!"
-              </p>
+              <p className="mb-2 italic">{t.t1}</p>
               <span className="font-semibold text-blue-700 dark:text-blue-400">
-                - Rajesh, Startup Founder
+                {t.t1By}
               </span>
             </div>
             <div className="p-6 bg-white border border-gray-100 shadow dark:bg-gray-800 rounded-xl dark:border-gray-700">
-              <p className="mb-2 italic">
-                "Helped me land consistent projects as a developer."
-              </p>
+              <p className="mb-2 italic">{t.t2}</p>
               <span className="font-semibold text-blue-700 dark:text-blue-400">
-                - Priya, Web Developer
+                {t.t2By}
               </span>
             </div>
           </div>
@@ -197,14 +185,12 @@ const HomePage = () => {
 
         {/* Call to Action */}
         <section className="flex flex-col items-center justify-center px-4 py-16 text-center md:px-8 bg-blue-50 dark:bg-gray-900 gap-2.5">
-          <h2 className="mb-4 text-3xl font-semibold">
-            Start Your Freelance Journey Today
-          </h2>
+          <h2 className="mb-4 text-3xl font-semibold">{t.cta}</h2>
           <Link
             href={"/contact-us"}
             className="px-8 py-3 font-semibold text-white transition bg-blue-600 rounded-lg shadow hover:bg-blue-700 hover:shadow-lg hover:scale-105"
           >
-            Join Now
+            {t.join}
           </Link>
         </section>
       </div>

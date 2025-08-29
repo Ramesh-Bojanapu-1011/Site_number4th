@@ -1,8 +1,9 @@
 "use client";
 import Footer from "@/components/Footer";
 import Headder from "@/components/Headder";
-
 import React from "react";
+import { useLanguage } from "@/components/LanguageContext";
+import translations from "@/trancelate/trancelate";
 
 type Props = {};
 
@@ -44,6 +45,9 @@ const ContactUs = (props: Props) => {
       alert("Oops! Something went wrong.");
     }
   };
+
+  const { language } = useLanguage();
+  const t = translations[language as keyof typeof translations].contact;
   return (
     <>
       <Headder />
@@ -51,11 +55,10 @@ const ContactUs = (props: Props) => {
       <section className="relative w-full h-[100vh] flex items-center justify-center bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-900 dark:to-gray-800 text-center caret-transparent">
         <div className="max-w-2xl px-4 mx-auto">
           <h1 className="mb-4 text-4xl font-extrabold text-indigo-700 md:text-5xl dark:text-indigo-300">
-            Contact Us
+            {t.heroTitle}
           </h1>
           <p className="mb-6 text-lg text-gray-700 md:text-xl dark:text-gray-200">
-            We'd love to hear from you! Reach out for project inquiries,
-            support, or just to say hello.
+            {t.heroDesc}
           </p>
         </div>
       </section>
@@ -74,7 +77,7 @@ const ContactUs = (props: Props) => {
           {/* Right Side: Contact Form */}
           <div>
             <h2 className="mb-6 text-2xl font-bold text-center text-purple-700 dark:text-purple-300">
-              Send a Message
+              {t.formTitle}
             </h2>
             <form
               className="space-y-6"
@@ -86,14 +89,14 @@ const ContactUs = (props: Props) => {
               <div className="grid gap-6 md:grid-cols-2">
                 <input
                   type="text"
-                  placeholder="Your Name"
+                  placeholder={t.name}
                   name="name"
                   className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                   required
                 />
                 <input
                   type="email"
-                  placeholder="Your Email"
+                  placeholder={t.email}
                   name="email"
                   className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                   required
@@ -101,13 +104,13 @@ const ContactUs = (props: Props) => {
               </div>
               <input
                 type="text"
-                placeholder="Subject"
+                placeholder={t.subject}
                 name="subject"
                 className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required
               />
               <textarea
-                placeholder="Your Message"
+                placeholder={t.message}
                 rows={5}
                 name="message"
                 className="w-full p-3 text-gray-800 bg-white border border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
@@ -117,7 +120,7 @@ const ContactUs = (props: Props) => {
                 type="submit"
                 className="w-full py-3 font-semibold text-white transition-all duration-300 bg-indigo-600 rounded-lg shadow hover:bg-indigo-700"
               >
-                Send Message
+                {t.send}
               </button>
             </form>
             {success && (
@@ -125,7 +128,7 @@ const ContactUs = (props: Props) => {
                 id="successMessage"
                 style={{ color: "green", marginTop: "10px" }}
               >
-                Message sent successfully!
+                {t.success}
               </p>
             )}
           </div>
@@ -136,33 +139,18 @@ const ContactUs = (props: Props) => {
       <section className="py-12 bg-gray-50 dark:bg-gray-800 caret-transparent">
         <div className="max-w-3xl px-6 mx-auto">
           <h2 className="mb-6 text-2xl font-bold text-center text-purple-700 dark:text-purple-300">
-            Frequently Asked Questions
+            {t.faqTitle}
           </h2>
           <div className="space-y-4">
-            <div className="p-4 bg-white rounded-lg shadow dark:bg-gray-900">
-              <h4 className="mb-1 font-semibold">
-                How quickly will I get a response?
-              </h4>
-              <p className="text-gray-700 dark:text-gray-200">
-                We aim to respond to all inquiries within 24 hours.
-              </p>
-            </div>
-            <div className="p-4 bg-white rounded-lg shadow dark:bg-gray-900">
-              <h4 className="mb-1 font-semibold">
-                Can I request a custom service?
-              </h4>
-              <p className="text-gray-700 dark:text-gray-200">
-                Absolutely! Just describe your needs in the form and we’ll
-                tailor a solution for you.
-              </p>
-            </div>
-            <div className="p-4 bg-white rounded-lg shadow dark:bg-gray-900">
-              <h4 className="mb-1 font-semibold">Is my information safe?</h4>
-              <p className="text-gray-700 dark:text-gray-200">
-                Yes, your privacy is important to us. We never share your
-                details without consent.
-              </p>
-            </div>
+            {t.faq.map((item: any, idx: number) => (
+              <div
+                key={idx}
+                className="p-4 bg-white rounded-lg shadow dark:bg-gray-900"
+              >
+                <h4 className="mb-1 font-semibold">{item.q}</h4>
+                <p className="text-gray-700 dark:text-gray-200">{item.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -171,7 +159,7 @@ const ContactUs = (props: Props) => {
       <section className="py-12 text-center bg-white dark:bg-gray-900">
         <div className="mx-auto ">
           <h2 className="mb-6 text-2xl font-bold text-indigo-700 dark:text-indigo-300">
-            Our Location
+            {t.locationTitle}
           </h2>
           <div className="w-full overflow-hidden rounded-lg shadow h-[400px]">
             <iframe

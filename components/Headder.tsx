@@ -3,8 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import { ModeToggle } from "./ModeToggel";
+import LanguageSelector from "./LanguageSelector";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/components/LanguageContext";
+import translations from "@/trancelate/trancelate";
 
 // MobileMenuItem component for mobile navigation
 type MobileMenuItemProps = {
@@ -24,14 +27,14 @@ function MobileMenuItem({
 }: MobileMenuItemProps) {
   return (
     <div>
-      <Link
+      <div
         className="flex items-center justify-between w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full hover:bg-blue-50"
         onClick={toggle}
-        href={link}
+        // href={link}
       >
         {label}
         <span>{isOpen ? "▲" : "▼"}</span>
-      </Link>
+      </div>
       {/* Render children only if the menu is open */}
       {isOpen && <div className="pl-4">{children}</div>}
     </div>
@@ -42,6 +45,8 @@ type Props = {};
 
 const Headder = (props: Props) => {
   const router = useRouter();
+  const { language } = useLanguage();
+  const t = translations[language as keyof typeof translations].header;
   // State for avatar dropdown
   const [isAvatarOpen, setIsAvatarOpen] = React.useState(false);
   // State for mobile menu toggle
@@ -52,11 +57,27 @@ const Headder = (props: Props) => {
     home: boolean;
     services: boolean;
   }>({ home: false, services: false });
-  // State for desktop dropdowns
+
+  // State for desktop dropdowns (mutually exclusive)
   const [desktopDropdown, setDesktopDropdown] = React.useState<{
     home: boolean;
     services: boolean;
   }>({ home: false, services: false });
+
+  // Ref for nav to detect outside clicks
+  const navRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setDesktopDropdown({ home: false, services: false });
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   React.useEffect(() => {
     // Runs only in the browser
@@ -85,8 +106,11 @@ const Headder = (props: Props) => {
   return (
     <>
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full min-w-0 bg-white shadow-md caret-transparent dark:bg-gray-900">
-        <div className="flex items-center justify-between min-w-0 px-4 py-3">
+      <nav
+        className="sticky top-0 z-50 w-full min-w-0 bg-white shadow-md caret-transparent dark:bg-gray-900"
+        ref={navRef}
+      >
+        <div className="flex items-center justify-between min-w-0 px-4 py-3 text-nowrap">
           <div className="flex items-center">
             <div className="flex items-center justify-center mr-3 rounded-lg">
               <Link href={"/"}>
@@ -103,25 +127,28 @@ const Headder = (props: Props) => {
                 type="button"
                 className="flex items-center justify-between w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
                 onClick={() =>
-                  setDesktopDropdown((prev) => ({ ...prev, home: !prev.home }))
+                  setDesktopDropdown((prev) => ({
+                    home: !prev.home,
+                    services: false, // close services if opening home
+                  }))
                 }
               >
-                Home
+                {t.home}
                 <span className="ml-2">▼</span>
               </button>
               {desktopDropdown.home && (
-                <div className="absolute left-0 z-20 w-32 mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                <div className="absolute left-0 z-20 flex flex-col w-32 mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                   <Link
                     href="/home1"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Home1
+                    {t.home1}
                   </Link>
                   <Link
                     href="/home2"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Home2
+                    {t.home2}
                   </Link>
                 </div>
               )}
@@ -131,7 +158,7 @@ const Headder = (props: Props) => {
               href="/about"
               className="flex items-center w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
             >
-              About
+              {t.about}
             </Link>
 
             {/* Services with submenu - open on click only */}
@@ -141,12 +168,12 @@ const Headder = (props: Props) => {
                 className="flex items-center justify-between w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
                 onClick={() =>
                   setDesktopDropdown((prev) => ({
-                    ...prev,
+                    home: false, // close home if opening services
                     services: !prev.services,
                   }))
                 }
               >
-                Services
+                {t.services}
                 <span className="ml-2">▼</span>
               </button>
               {desktopDropdown.services && (
@@ -155,38 +182,44 @@ const Headder = (props: Props) => {
                     href="/services"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    All Services
+                    {t.allServices}
                   </Link>
 
                   <Link
                     href="/web-app-development"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Web & App Development
+                    {t.webAppDevelopment}
                   </Link>
                   <Link
                     href="/ui-ux-design"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    UI/UX & Graphic Design
+                    {t.uiuxDesign}
                   </Link>
                   <Link
                     href="/content-writing"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Content Writing
+                    {t.contentWriting}
                   </Link>
                   <Link
                     href="/digital-marketing"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Digital Marketing & SEO
+                    {t.digitalMarketing}
                   </Link>
                   <Link
                     href="/video-production"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Video Production & Animation
+                    {t.videoProduction}
+                  </Link>
+                  <Link
+                    href="/cloud-devops-services"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    {t.cloudDevops}
                   </Link>
                 </div>
               )}
@@ -196,13 +229,13 @@ const Headder = (props: Props) => {
               href="/blog"
               className="flex items-center w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
             >
-              Blog
+              {t.blog}
             </Link>
             <Link
               href="/contact-us"
               className="flex items-center w-full px-4 py-2 font-medium text-left text-blue-800 transition rounded-full text-nowrap dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
             >
-              Contact Us
+              {t.contactUs}
             </Link>
           </div>
 
@@ -211,6 +244,9 @@ const Headder = (props: Props) => {
             className="relative items-center hidden space-x-4 md:flex"
             style={{ minWidth: "120px" }}
           >
+            <div className="mr-4">
+              <LanguageSelector />
+            </div>
             <ModeToggle />
             <button onClick={() => setIsAvatarOpen((prev) => !prev)}>
               <Avatar className="w-10 h-10">
@@ -242,17 +278,23 @@ const Headder = (props: Props) => {
               className="fixed top-0 left-0 z-30 w-full h-full bg-black bg-opacity-40 md:hidden"
               onClick={() => setIsMenuOpen(false)}
             >
-              {/* Mobile Menu Content */}
-
               <div
                 className="absolute top-0 left-0 flex flex-col w-64 h-full p-6 space-y-4 bg-white shadow-lg dark:bg-gray-900"
                 onClick={(e) => e.stopPropagation()}
+                tabIndex={0}
+                onBlur={() => setIsMenuOpen(false)}
               >
-                <button onClick={() => setIsAvatarOpen((prev) => !prev)}>
-                  <Avatar className="w-10 h-10">
-                    <AvatarFallback>{userInitials || "RB"}</AvatarFallback>
-                  </Avatar>
-                </button>
+                <div className="flex items-center justify-between mb-4">
+                  <button onClick={() => setIsAvatarOpen((prev) => !prev)}>
+                    <Avatar className="w-10 h-10">
+                      <AvatarFallback>{userInitials || "RB"}</AvatarFallback>
+                    </Avatar>
+                  </button>
+                  {/* Mobile Menu Content */}
+                  <div className="mb-4">
+                    <LanguageSelector />
+                  </div>
+                </div>
                 {isAvatarOpen && (
                   <div className="z-30 w-32 mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                     <button
@@ -265,7 +307,7 @@ const Headder = (props: Props) => {
                 )}
                 {/* Home with submenu */}
                 <MobileMenuItem
-                  label="Home"
+                  label={t.home}
                   link="/"
                   isOpen={mobileOpen.home}
                   toggle={() =>
@@ -277,14 +319,14 @@ const Headder = (props: Props) => {
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Home1
+                    {t.home1}
                   </Link>
                   <Link
                     href="/home2"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Home2
+                    {t.home2}
                   </Link>
                 </MobileMenuItem>
                 {/* About */}
@@ -293,11 +335,11 @@ const Headder = (props: Props) => {
                   className="block px-4 py-2 font-medium text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  About
+                  {t.about}
                 </Link>
                 {/* Services with submenu */}
                 <MobileMenuItem
-                  label="Services"
+                  label={t.services}
                   isOpen={mobileOpen.services}
                   link="/services"
                   toggle={() =>
@@ -311,31 +353,37 @@ const Headder = (props: Props) => {
                     href="/web-app-development"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Web & App Development
+                    {t.webAppDevelopment}
                   </Link>
                   <Link
                     href="/ui-ux-design"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    UI/UX & Graphic Design
+                    {t.uiuxDesign}
                   </Link>
                   <Link
                     href="/content-writing"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Content Writing
+                    {t.contentWriting}
                   </Link>
                   <Link
                     href="/digital-marketing"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Digital Marketing & SEO
+                    {t.digitalMarketing}
                   </Link>
                   <Link
                     href="/video-production"
                     className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
                   >
-                    Video Production & Animation
+                    {t.videoProduction}
+                  </Link>
+                  <Link
+                    href="/video-production"
+                    className="block px-4 py-2 text-blue-800 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-200"
+                  >
+                    {t.videoProduction}
                   </Link>
                 </MobileMenuItem>
                 {/* Blog */}
@@ -344,7 +392,7 @@ const Headder = (props: Props) => {
                   className="block px-4 py-2 font-medium text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Blog
+                  {t.blog}
                 </Link>
                 {/* Contact Us */}
                 <Link
@@ -352,7 +400,7 @@ const Headder = (props: Props) => {
                   className="block px-4 py-2 font-medium text-blue-800 transition rounded-full dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-gray-800"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Contact Us
+                  {t.contactUs}
                 </Link>
               </div>
             </div>

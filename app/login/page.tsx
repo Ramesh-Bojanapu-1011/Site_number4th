@@ -1,9 +1,15 @@
 "use client";
+
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useLanguage } from "@/components/LanguageContext";
+import LanguageSelector from "@/components/LanguageSelector";
+import translations from "@/trancelate/trancelate";
 
 const LoginPage = () => {
+  const { language } = useLanguage();
+  const t = translations[language as keyof typeof translations].login;
   const [view, setView] = useState<"login" | "register" | "forgotPassword">(
     "login",
   );
@@ -87,6 +93,9 @@ const LoginPage = () => {
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-200 dark:from-gray-900 dark:to-gray-800">
+      <div className="absolute z-20 top-4 right-4">
+        <LanguageSelector />
+      </div>
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -102,12 +111,12 @@ const LoginPage = () => {
         {view === "login" && (
           <>
             <h2 className="mb-6 text-3xl font-bold text-center text-blue-700 dark:text-blue-400">
-              Login
+              {t.login}
             </h2>
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t.email}
               value={formData.email}
               onChange={handleInputChange}
               className="w-full px-4 py-3 mb-4 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -116,7 +125,7 @@ const LoginPage = () => {
             <input
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={t.password}
               value={formData.password}
               onChange={handleInputChange}
               className="w-full px-4 py-3 mb-6 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -126,20 +135,20 @@ const LoginPage = () => {
               onClick={handleLogin}
               className="w-full py-3 mb-3 font-semibold text-white transition duration-150 bg-blue-600 rounded-lg shadow hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
             >
-              Login
+              {t.login}
             </button>
             <div className="flex justify-between gap-2">
               <button
                 onClick={() => setView("register")}
                 className="w-1/2 py-2 font-medium text-blue-700 transition bg-white border border-blue-400 rounded-lg dark:text-blue-300 dark:bg-gray-900 hover:bg-blue-50 dark:hover:bg-gray-800"
               >
-                Register
+                {t.register}
               </button>
               <button
                 onClick={() => setView("forgotPassword")}
                 className="w-1/2 py-2 font-medium text-blue-700 transition bg-white border border-blue-400 rounded-lg dark:text-blue-300 dark:bg-gray-900 hover:bg-blue-50 dark:hover:bg-gray-800"
               >
-                Forgot Password
+                {t.forgotPassword}
               </button>
             </div>
           </>
@@ -147,13 +156,13 @@ const LoginPage = () => {
         {view === "register" && (
           <>
             <h2 className="mb-6 text-3xl font-bold text-center text-blue-700 dark:text-blue-400">
-              Register
+              {t.register}
             </h2>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <input
                 type="text"
                 name="firstName"
-                placeholder="First Name"
+                placeholder={t.firstName}
                 value={formData.firstName}
                 onChange={handleInputChange}
                 className="col-span-1 px-4 py-3 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -162,7 +171,7 @@ const LoginPage = () => {
               <input
                 type="text"
                 name="lastName"
-                placeholder="Last Name"
+                placeholder={t.lastName}
                 value={formData.lastName}
                 onChange={handleInputChange}
                 className="col-span-1 px-4 py-3 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -172,7 +181,7 @@ const LoginPage = () => {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t.email}
               value={formData.email}
               onChange={handleInputChange}
               className="w-full px-4 py-3 mb-4 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -181,7 +190,7 @@ const LoginPage = () => {
             <input
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={t.password}
               value={formData.password}
               onChange={handleInputChange}
               className="w-full px-4 py-3 mb-4 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -190,7 +199,7 @@ const LoginPage = () => {
             <input
               type="password"
               name="confirmPassword"
-              placeholder="Confirm Password"
+              placeholder={t.confirmPassword}
               value={formData.confirmPassword}
               onChange={handleInputChange}
               className="w-full px-4 py-3 mb-6 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -200,25 +209,25 @@ const LoginPage = () => {
               onClick={handleRegister}
               className="w-full py-3 mb-3 font-semibold text-white transition duration-150 bg-blue-600 rounded-lg shadow hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
             >
-              Register
+              {t.register}
             </button>
             <button
               onClick={() => setView("login")}
               className="w-full py-2 font-medium text-blue-700 transition bg-white border border-blue-400 rounded-lg dark:text-blue-300 dark:bg-gray-900 hover:bg-blue-50 dark:hover:bg-gray-800"
             >
-              Back to Login
+              {t.backToLogin}
             </button>
           </>
         )}
         {view === "forgotPassword" && (
           <>
             <h2 className="mb-6 text-3xl font-bold text-center text-blue-700 dark:text-blue-400">
-              Forgot Password
+              {t.forgotPassword}
             </h2>
             <input
               type="email"
               name="email"
-              placeholder="Enter your registered email"
+              placeholder={t.enterRegisteredEmail}
               value={formData.email}
               onChange={handleInputChange}
               className="w-full px-4 py-3 mb-4 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -227,7 +236,7 @@ const LoginPage = () => {
             <input
               type="password"
               name="newPassword"
-              placeholder="Enter new password"
+              placeholder={t.enterNewPassword}
               value={formData.newPassword}
               onChange={handleInputChange}
               className="w-full px-4 py-3 mb-4 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -236,7 +245,7 @@ const LoginPage = () => {
             <input
               type="password"
               name="confirmPassword"
-              placeholder="Confirm new password"
+              placeholder={t.confirmNewPassword}
               value={formData.confirmPassword}
               onChange={handleInputChange}
               className="w-full px-4 py-3 mb-6 text-gray-900 transition border border-blue-200 rounded-lg dark:border-gray-700 bg-blue-50 dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -246,13 +255,13 @@ const LoginPage = () => {
               onClick={handleForgotPassword}
               className="w-full py-3 mb-3 font-semibold text-white transition duration-150 bg-blue-600 rounded-lg shadow hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
             >
-              Update Password
+              {t.updatePassword}
             </button>
             <button
               onClick={() => setView("login")}
               className="w-full py-2 font-medium text-blue-700 transition bg-white border border-blue-400 rounded-lg dark:text-blue-300 dark:bg-gray-900 hover:bg-blue-50 dark:hover:bg-gray-800"
             >
-              Back to Login
+              {t.backToLogin}
             </button>
           </>
         )}

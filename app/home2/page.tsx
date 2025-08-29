@@ -1,31 +1,34 @@
+"use client";
 import Footer from "@/components/Footer";
 import Headder from "@/components/Headder";
 import React from "react";
+import { useLanguage } from "@/components/LanguageContext";
+import translations from "@/trancelate/trancelate";
 
 type Props = {};
 
 const Home2 = (props: Props) => {
+  const { language } = useLanguage();
+  const t = translations[language as keyof typeof translations].home2;
   return (
     <main className="caret-transparent">
       <Headder />
-
       {/* Hero Section */}
       <section className="relative flex items-center justify-center w-full h-screen overflow-hidden text-center bg-gradient-to-br from-blue-100 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
         <div className="absolute top-0 left-0 z-0 w-full h-full bg-opacity-30" />
         <div className="relative z-10 flex items-center justify-center h-full px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h1 className="mb-4 text-4xl font-extrabold text-indigo-700 md:text-5xl dark:text-indigo-300">
-              Creative Freelance Solutions
+              {t.heroTitle}
             </h1>
-            <p className="mb-6 text-lg text-white md:text-xl dark:text-gray-200">
-              Crafting modern websites, clean designs & smart marketing for your
-              brand.
+            <p className="mb-6 text-lg md:text-xl dark:text-gray-200">
+              {t.heroDesc}
             </p>
             <a
               href="#contact"
               className="inline-block px-8 py-3 font-semibold text-indigo-700 transition-all duration-300 bg-white rounded-full shadow hover:bg-gray-100 dark:bg-gray-900 dark:text-indigo-300 dark:hover:bg-gray-800"
             >
-              Let’s Talk
+              {t.letsTalk}
             </a>
           </div>
         </div>
@@ -35,26 +38,10 @@ const Home2 = (props: Props) => {
       <section className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-6xl px-6 mx-auto text-center">
           <h2 className="mb-8 text-3xl font-bold text-purple-700 dark:text-purple-300">
-            What I Offer
+            {t.whatIOffer}
           </h2>
           <div className="grid gap-8 md:grid-cols-3">
-            {[
-              {
-                title: "Web Development",
-                desc: "Responsive and scalable websites using the latest technologies.",
-                icon: "💻",
-              },
-              {
-                title: "UI/UX Design",
-                desc: "Beautiful and intuitive designs focused on great user experiences.",
-                icon: "🎨",
-              },
-              {
-                title: "SEO & Marketing",
-                desc: "Rank higher, drive traffic, and convert more customers.",
-                icon: "🚀",
-              },
-            ].map((service, index) => (
+            {t.services.map((service, index) => (
               <div
                 key={index}
                 className="p-6 text-center transition bg-white shadow cursor-pointer dark:bg-gray-900 rounded-xl hover:scale-105 hover:shadow-lg"
@@ -76,7 +63,7 @@ const Home2 = (props: Props) => {
       <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-6xl px-6 mx-auto text-center">
           <h2 className="mb-8 text-3xl font-bold text-indigo-700 dark:text-indigo-300">
-            Recent Projects
+            {t.recentProjects}
           </h2>
           <div className="grid gap-8 md:grid-cols-3">
             {[1, 2, 3].map((item) => (
@@ -86,14 +73,12 @@ const Home2 = (props: Props) => {
               >
                 <img
                   src={`/project/${item}.jpg`}
-                  alt={`Project ${item}`}
+                  alt={t.project(item)}
                   className="object-cover w-full h-56 transition duration-300 transform group-hover:scale-110"
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-left text-white bg-black bg-opacity-60 dark:bg-gray-900 dark:bg-opacity-80">
-                  <h3 className="text-lg font-semibold">Project {item}</h3>
-                  <p className="text-sm opacity-80">
-                    Live website / application showcase
-                  </p>
+                  <h3 className="text-lg font-semibold">{t.project(item)}</h3>
+                  <p className="text-sm opacity-80">{t.projectDesc}</p>
                 </div>
               </div>
             ))}
@@ -111,12 +96,10 @@ const Home2 = (props: Props) => {
           />
           <div>
             <h2 className="mb-4 text-3xl font-bold text-purple-700 dark:text-purple-300">
-              Who’s Behind the Work
+              {t.who}
             </h2>
             <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              A passionate freelancer with a focus on innovation, clean design,
-              and real-world results. With a background in web development and
-              marketing, I help brands grow with smart online presence.
+              {t.whoDesc}
             </p>
           </div>
         </div>
@@ -126,21 +109,10 @@ const Home2 = (props: Props) => {
       <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-6xl px-6 mx-auto text-center">
           <h2 className="mb-8 text-3xl font-bold text-indigo-700 dark:text-indigo-300">
-            Happy Clients
+            {t.happyClients}
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
-            {[
-              {
-                quote:
-                  "Delivered top-quality work, on time. Great communication throughout!",
-                author: "— Alex M., CEO",
-              },
-              {
-                quote:
-                  "Amazing design skills and super responsive. Highly recommend!",
-                author: "— Rina S., Startup Founder",
-              },
-            ].map((testimonial, index) => (
+            {t.testimonials.map((testimonial, index) => (
               <div
                 key={index}
                 className="p-6 text-center transition bg-white shadow cursor-pointer dark:bg-gray-900 rounded-xl hover:scale-105 hover:shadow-lg"
@@ -164,17 +136,16 @@ const Home2 = (props: Props) => {
       >
         <div className="max-w-3xl px-6 mx-auto">
           <h2 className="mb-6 text-3xl font-bold text-purple-700 dark:text-purple-300">
-            Let’s Build Something Great
+            {t.build}
           </h2>
           <p className="mb-10 text-lg text-gray-700 dark:text-gray-200">
-            Reach out to start your next project or to request a free
-            consultation.
+            {t.buildDesc}
           </p>
           <a
             href="/contact-us"
             className="inline-block px-8 py-3 font-semibold text-white transition-all duration-300 bg-indigo-600 rounded-full shadow hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-700"
           >
-            Contact Me
+            {t.contactMe}
           </a>
         </div>
       </section>
