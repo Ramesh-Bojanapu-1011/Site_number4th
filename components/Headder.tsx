@@ -113,7 +113,7 @@ const Headder = (props: Props) => {
         <div className="flex items-center justify-between min-w-0 px-4 py-3 text-nowrap">
           <div className="flex items-center">
             <div className="flex items-center justify-center mr-3 rounded-lg">
-              <Link href={"/"}>
+              <Link href={"/home1"}>
                 <Image src={"/logo1.png"} alt={""} width={200} height={200} />
               </Link>
             </div>
