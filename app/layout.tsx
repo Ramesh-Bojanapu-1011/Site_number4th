@@ -8,12 +8,12 @@ import RtlWrapper from "@/components/RtlWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin"], // Only include what you use!
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin"], // Only include what you use!
 });
 
 export const metadata: Metadata = {
